@@ -132,17 +132,38 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 20px;
+    font-size: 16px;
     background-color: whitesmoke;
     border-radius: 12px;
-    margin-top: 10px;
+    margin-top: 5px;
     color: #2e4731;
     padding: 0 15px;
-
 }
 
 .total-price {
 }
+
+/*Finish order styles */
+#finish-order{
+    display: flex;
+    justify-content: center;
+}
+
+.pay-btn {
+    align-self: center;
+    text-align: center;
+    background-color: #019754;
+    color: whitesmoke;
+    padding: 13px 80px;
+    border-radius: 10px;
+    margin-top: 10px;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
 /* hides or unhides displays when called via javascript /*
 .hidden {
     display: none;

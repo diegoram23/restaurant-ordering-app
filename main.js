@@ -15,6 +15,10 @@ document.addEventListener('click', function (e) {
     else if (e.target.dataset.removeBtn) {
         removeItemsFromOrder(e.target.dataset.removeBtn)
     }
+
+    else if(e.target.id === 'pay-btn'){
+        console.log('yoo')
+    }
 })
 
 // Function that loops through each menu array data 
@@ -70,7 +74,7 @@ function removeItemsFromOrder(items){
 
 // Generate html string based on user selection of items
 function getOrderHtml() {
-    let orderHtml = '<h2 class="order-title">Your order</h2>'
+    let orderHtml = '<h2 class="order-title">Your Order</h2>'
     if (itemsOrderedArray.length === 0) {
         orderContainer.classList.add('hidden')
     }
@@ -97,8 +101,19 @@ function getPrice (){
             <h3 class="price-title">Total price:</h3>
             <h3 class="total-price">$${totalPrice}</h3>
         </div>
+        <div id="finish-order">
+        <!--Pay for order elements here-->
+        <button class="pay-btn" id="pay-btn" data-pay-btn="payBtn">Order Now</button>
+    </div>
         `
     }
     document.getElementById('order-total').innerHTML = totalHtml
+    finishOrder()
 
+}
+
+function finishOrder(){
+   
+       
+    
 }
