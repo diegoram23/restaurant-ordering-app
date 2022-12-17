@@ -1,5 +1,5 @@
 //menu array data file
-import { menuArray } from '/data.js'
+import { menuArray } from './data.js'
 
 
 
