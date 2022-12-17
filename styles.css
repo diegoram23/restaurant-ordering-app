@@ -22,11 +22,22 @@ header {
     padding-left: 20px;
 }
 
- h1, h3{
+ .title{
     text-shadow: 0.5px 0.5px #f7fff7;
     margin-top: 15px;
     color: white;
     text-shadow: 1px 1px #2e4731;
+}
+
+.order-title {
+    text-align: center;
+    color: #019754;
+}
+
+.remove-btn {
+    opacity: 0.7;
+    font-size: 12px;
+    color: #019754;
 }
 
 p {
@@ -93,3 +104,15 @@ main {
     color: whitesmoke;
     border: 1px solid whitesmoke;
 }
+
+.order-line {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: solid 1px #d2d2d2;;
+}
+
+.price {
+    margin: 0 0 0 auto;
+}
+
