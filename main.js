@@ -10,13 +10,10 @@ document.addEventListener('click', function (e) {
     //Checks if add item btn is clicked
     if (e.target.dataset.addBtn) {
         addItemsToOrder(e.target.dataset.addBtn)
-        console.log(e.target.dataset.addBtn)
-        orderContainer.classList.remove('hidden')
-
     }
     //Checks if remove item btn is clicked
     else if (e.target.dataset.removeBtn) {
-        console.log(e.target.dataset.removeBtn)
+        removeItemsFromOrder(e.target.dataset.removeBtn)
     }
 })
 
@@ -51,11 +48,12 @@ render()
 
 
 //Matches items added and pushes them to an array
-function addItemsToOrder(addBtnId) {
-    const addItemBtnObj = menuArray.filter(function (chosenItem) {
-        return chosenItem.id == addBtnId
+function addItemsToOrder(items) {
+    const targetItemObj = menuArray.filter(chosenItem => {
+        return chosenItem.id == items
     })[0]
-    itemsOrderedArray.push(addItemBtnObj)
+    orderContainer.classList.remove('hidden')
+    itemsOrderedArray.push(targetItemObj)
     getOrderHtml()
 }
 
@@ -68,18 +66,25 @@ function getOrderHtml() {
     for (let item of itemsOrderedArray) {
         orderHtml += `
         <div class="order-line">
-            <h3>${item.name}</h3>
+            <h3 class="order-selected">${item.name}</h3>
             <p class="remove-btn" data-remove-btn="${item.id}">Remove</p>
             <h3 class="price">$${item.price}</h3>
         </div>
         `
     }
     orderContainer.innerHTML = orderHtml
-    getPrice()
+    //getPrice() add this function later
 }
 
-function renderOrder() {
-    document.getElementById('order').innerHTML = getOrderHtml()
+//Function that removes each item clicked by user
+function removeItemsFromOrder(items){
+    const targetItemObj = menuArray.filter(chosenItem => {
+        return chosenItem.id == items
+    })
+    //If user removes all items from order, order display hides
+    if(itemsOrderedArray.length === 0){
+        orderContainer.classList.add('hidden')
+    }
+    itemsOrderedArray.shift(targetItemObj)
+    getOrderHtml()
 }
-
-

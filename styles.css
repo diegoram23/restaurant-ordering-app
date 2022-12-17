@@ -21,6 +21,7 @@ p {
     margin: 0;
 }
 
+
 /* Header */
 
 header {
@@ -106,7 +107,8 @@ main {
     display: flex;
     align-items: center;
     gap: 15px;
-    border-bottom: solid 1px #d2d2d2;;
+    border-bottom: solid 1px #d2d2d2;
+    font-size: 14px;
 }
 
 .price {
@@ -121,7 +123,7 @@ main {
 
 .remove-btn {
     opacity: 0.7;
-    font-size: 12px;
+    font-size: 10px;
     color: #019754;
 }
 

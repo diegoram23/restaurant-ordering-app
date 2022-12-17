@@ -14,10 +14,10 @@ export const menuArray = [
         id: 1
     },
         {
-        name: "Corona Fresca",
-        ingredients: ["grain, hops, yeast, water"],
+        name: "Michelada",
+        ingredients: ["Corona, limon, clamato, tajin"],
         price: 8,
-        emoji: "🍺",
+        emoji: "🍹",
         id: 2
     }
 ]
