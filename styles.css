@@ -15,6 +15,14 @@ body{
     background-color: white;
 }
 
+/* Typography */
+
+p {
+    margin: 0;
+}
+
+/* Header */
+
 header {
     background-image: url('banner.jpg');
     background-size: cover;
@@ -29,24 +37,10 @@ header {
     text-shadow: 1px 1px #2e4731;
 }
 
-.order-title {
-    text-align: center;
-    color: #019754;
-}
-
-.remove-btn {
-    opacity: 0.7;
-    font-size: 12px;
-    color: #019754;
-}
-
-p {
-    margin: 0;
-}
+/* Main section */
 
 main {
     padding: 0px 25px;
-    background-color: whitesmoke;
 }
 
 .menu-item-container {
@@ -66,7 +60,7 @@ main {
 }
 
 .item-emoji {
-    font-size: 60px;
+    font-size: 50px;
 }
 
 .item-ingredients {
@@ -74,8 +68,6 @@ main {
     padding-bottom: 7px;
     opacity: 0.7;
 }
-
-
 
 .item-info-container {
     width: 90%;
@@ -86,7 +78,10 @@ main {
 .item-price{
     font-size: 12px;
     font-weight: bold;
+    color: #019754;
 }
+
+/* Add button styles */
 
 .add-btn {
     border-radius: 50%;
@@ -105,6 +100,8 @@ main {
     border: 1px solid whitesmoke;
 }
 
+/* Current order styles */
+
 .order-line {
     display: flex;
     align-items: center;
@@ -116,3 +113,19 @@ main {
     margin: 0 0 0 auto;
 }
 
+
+.order-title {
+    text-align: center;
+    color: #019754;
+}
+
+.remove-btn {
+    opacity: 0.7;
+    font-size: 12px;
+    color: #019754;
+}
+
+/* hides or unhides displays when called via javascript /*
+.hidden {
+    display: none;
+}
