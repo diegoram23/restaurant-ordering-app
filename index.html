@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer type="module"></script>
     <!-- Google font beginning-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +31,7 @@
             <h2 class="order-title">Your order</h2>
             <div class="order-line">
                 <h3>Taco</h3>
-                <p class="remove-btn" data-remove-btn>Remove</p>
+                <p class="remove-btn" data-remove-btn="${item}">Remove</p>
                 <h3 class="price">$15</h3>
             </div>
 
@@ -46,7 +47,6 @@
 
 
 
-    <script src="main.js" defer type="module"></script>
 </body>
 
 </html>

@@ -5,9 +5,13 @@ import { menuArray } from '/data.js'
 
 //Listens for clicks on entire document
 document.addEventListener('click', function (e) {
-    //Checks if addBtn is clicked
+    //Checks if add item btn is clicked
     if (e.target.dataset.addBtn) {
         handleAddBtn(e.target.dataset.addBtn)
+    }
+    //Checks if remove item btn is clicked
+    else if (e.target.dataset.removeBtn){
+        console.log(e.target.dataset.removeBtn)
     }
 })
 
