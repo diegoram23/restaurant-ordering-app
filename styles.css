@@ -127,6 +127,22 @@ main {
     color: #019754;
 }
 
+/* Total price styles */
+.price-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    background-color: whitesmoke;
+    border-radius: 12px;
+    margin-top: 10px;
+    color: #2e4731;
+    padding: 0 15px;
+
+}
+
+.total-price {
+}
 /* hides or unhides displays when called via javascript /*
 .hidden {
     display: none;

@@ -57,6 +57,17 @@ function addItemsToOrder(items) {
     getOrderHtml()
 }
 
+//Function that removes each item clicked by user
+function removeItemsFromOrder(items){
+    const targetItemObj = menuArray.filter(chosenItem => {
+        return chosenItem.id == items
+    })
+    //If user removes all items from order, order display hides
+    itemsOrderedArray.shift(targetItemObj)
+    getOrderHtml()
+}
+
+
 // Generate html string based on user selection of items
 function getOrderHtml() {
     let orderHtml = '<h2 class="order-title">Your order</h2>'
@@ -73,18 +84,21 @@ function getOrderHtml() {
         `
     }
     orderContainer.innerHTML = orderHtml
-    //getPrice() add this function later
+    getPrice()
 }
 
-//Function that removes each item clicked by user
-function removeItemsFromOrder(items){
-    const targetItemObj = menuArray.filter(chosenItem => {
-        return chosenItem.id == items
-    })
-    //If user removes all items from order, order display hides
-    if(itemsOrderedArray.length === 0){
-        orderContainer.classList.add('hidden')
+function getPrice (){
+    let totalPrice = 0
+    let totalHtml = ''
+    for(let item of itemsOrderedArray){
+        totalPrice += item.price
+        totalHtml =`
+        <div class="price-line">
+            <h3 class="price-title">Total price:</h3>
+            <h3 class="total-price">$${totalPrice}</h3>
+        </div>
+        `
     }
-    itemsOrderedArray.shift(targetItemObj)
-    getOrderHtml()
+    document.getElementById('order-total').innerHTML = totalHtml
+
 }
