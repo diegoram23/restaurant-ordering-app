@@ -185,14 +185,15 @@ form {
     left: 0;
     bottom: 0;
     margin: auto;
-    width: 350px;
-    height: 300px;
-    box-shadow: 0px 0px 2px 2px whitesmoke;
+    width: 330px;
+    height: 280px;
+    box-shadow: 5px 5px whitesmoke;
     background-color: whitesmoke;
     text-align: center;
-    color: #019754;
+    color: #2e4731;
     display: none;
 }
+
 
 input {
     width: 80%;
@@ -203,8 +204,10 @@ input {
 }
 
 /*modal buttons */
+
+
 .modal-btns {
-    margin-top: 40px;
+    margin-top: 20px;
     display: flex;
     gap: 25px;
     justify-content: center;
@@ -243,7 +246,9 @@ input {
     color: whitesmoke;
     border: 1px solid whitesmoke;
 }
-/* hides or unhides displays when called via javascript /*
+
+
+/* hides or unhides displays when called via javascript */
 .hidden {
     display: none;
 }

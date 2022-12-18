@@ -2,6 +2,7 @@
 import { menuArray } from './data.js'
 
 let itemsOrderedArray = []
+const payForm = document.getElementById('pay-form')
 
 //Listens for clicks on entire document
 document.addEventListener('click', function (e) {
@@ -14,7 +15,7 @@ document.addEventListener('click', function (e) {
         removeItemsFromOrder(e.target.dataset.removeBtn)
     }
 
-    else if (e.target.id === 'order-now'){
+    else if (e.target.id === 'order-now') {
         finishOrder()
     }
 
@@ -64,7 +65,7 @@ function addItemsToOrder(items) {
 }
 
 //Function that removes each item clicked by user
-function removeItemsFromOrder(items){
+function removeItemsFromOrder(items) {
     const targetItemObj = menuArray.filter(chosenItem => {
         return chosenItem.id == items
     })
@@ -94,12 +95,12 @@ function getOrderHtml() {
 }
 
 //Function renders total price of items selected by user
-function renderPrice (){
+function renderPrice() {
     let totalPrice = 0
     let totalHtml = ''
-    for(let item of itemsOrderedArray){
+    for (let item of itemsOrderedArray) {
         totalPrice += item.price
-        totalHtml =`
+        totalHtml = `
         <div class="price-line">
             <h3 class="price-title">Total price:</h3>
             <h3 class="total-price">$${totalPrice}</h3>
@@ -114,11 +115,40 @@ function renderPrice (){
 }
 
 //Function takes user to pay modal
-function finishOrder(){
-   document.getElementById('modal').style.display = 'inline'
+function finishOrder() {
+    document.getElementById('modal').style.display = 'inline'
 }
 
+//Function that completes purchase and submits user information
+payForm.addEventListener('submit', function(e) {
+    //prevents default submit behavior
+    e.preventDefault()
+
+    //Gathers name of user to later render
+    const userFormData = new FormData(payForm)
+    const fullName = userFormData.get('fullName')
+
+    //Changes display on modal once user submits
+    document.getElementById("modal").innerHTML =
+    `
+        <div class = "payment-loading">
+        <h2 class="modal-title">Almost Done!</h2>
+        <p class='moda-text'>Gathering your information</p>
+        </div>
+    `
+    setTimeout(() => {
+        document.getElementById('modal').innerHTML = `
+        <div class = "payment-loading">
+        <h2 class="modal-title">Finished!</h2>
+
+        <p class='modal-text'>Thank you for your purchase</p>
+        </div>
+        `
+    }, 2500);
+    
+})
+
 //Function returns user to order page
-function goBack(){
+function goBack() {
     document.getElementById('modal').style.display = 'none'
 }
