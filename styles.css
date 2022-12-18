@@ -125,6 +125,7 @@ main {
     opacity: 0.7;
     font-size: 10px;
     color: #019754;
+    cursor: pointer;
 }
 
 /* Total price styles */
@@ -140,16 +141,13 @@ main {
     padding: 0 15px;
 }
 
-.total-price {
-}
-
 /*Finish order styles */
-#finish-order{
+#order-now{
     display: flex;
     justify-content: center;
 }
 
-.pay-btn {
+.order-now {
     align-self: center;
     text-align: center;
     background-color: #019754;
@@ -163,7 +161,88 @@ main {
     cursor: pointer;
 }
 
+.order-now:hover {
+    cursor: pointer;
+    background-color: #ddbc00;
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+}
+/* Modal */
 
+
+form {
+    margin: 10px;
+}
+
+.modal{
+    border: 2px solid #019754;
+    border-radius: 14px;
+    padding: 10px;
+    margin: 10px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    width: 350px;
+    height: 300px;
+    box-shadow: 0px 0px 2px 2px whitesmoke;
+    background-color: whitesmoke;
+    text-align: center;
+    color: #019754;
+    display: none;
+}
+
+input {
+    width: 80%;
+    margin: 5px;
+    height: 25px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/*modal buttons */
+.modal-btns {
+    margin-top: 40px;
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+}
+
+.choice {
+    padding: 5px 12px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+    border: 1px solid #2e4731;
+    padding: 12px 25px;
+    border-radius: 8px;
+}
+
+.pay {
+    background-color: #019754;
+    color: white;
+}
+
+.pay:hover {
+    cursor: pointer;
+    background-color: #ddbc00;
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+}
+
+.go-back{
+    background-color: white;
+    color: #2e4731;
+}
+
+.go-back:hover {
+    cursor: pointer;
+    background-color: #ddbc00;
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+}
 /* hides or unhides displays when called via javascript /*
 .hidden {
     display: none;

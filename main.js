@@ -2,8 +2,6 @@
 import { menuArray } from './data.js'
 
 let itemsOrderedArray = []
-const orderContainer = document.getElementById('order')
-
 
 //Listens for clicks on entire document
 document.addEventListener('click', function (e) {
@@ -16,8 +14,12 @@ document.addEventListener('click', function (e) {
         removeItemsFromOrder(e.target.dataset.removeBtn)
     }
 
-    else if(e.target.id === 'pay-btn'){
-        console.log('yoo')
+    else if (e.target.id === 'order-now'){
+        finishOrder()
+    }
+
+    else if (e.target.id === 'go-back') {
+        goBack()
     }
 })
 
@@ -56,7 +58,7 @@ function addItemsToOrder(items) {
     const targetItemObj = menuArray.filter(chosenItem => {
         return chosenItem.id == items
     })[0]
-    orderContainer.classList.remove('hidden')
+    document.getElementById('order').classList.remove('hidden')
     itemsOrderedArray.push(targetItemObj)
     getOrderHtml()
 }
@@ -76,7 +78,7 @@ function removeItemsFromOrder(items){
 function getOrderHtml() {
     let orderHtml = '<h2 class="order-title">Your Order</h2>'
     if (itemsOrderedArray.length === 0) {
-        orderContainer.classList.add('hidden')
+        document.getElementById('order').classList.add('hidden')
     }
     for (let item of itemsOrderedArray) {
         orderHtml += `
@@ -87,11 +89,12 @@ function getOrderHtml() {
         </div>
         `
     }
-    orderContainer.innerHTML = orderHtml
-    getPrice()
+    document.getElementById('order').innerHTML = orderHtml
+    renderPrice()
 }
 
-function getPrice (){
+//Function renders total price of items selected by user
+function renderPrice (){
     let totalPrice = 0
     let totalHtml = ''
     for(let item of itemsOrderedArray){
@@ -101,19 +104,21 @@ function getPrice (){
             <h3 class="price-title">Total price:</h3>
             <h3 class="total-price">$${totalPrice}</h3>
         </div>
-        <div id="finish-order">
+        <div id="order-now">
         <!--Pay for order elements here-->
-        <button class="pay-btn" id="pay-btn" data-pay-btn="payBtn">Order Now</button>
+        <button class="order-now" id="order-now" data-order-now="order-now">Order Now</button>
     </div>
         `
     }
     document.getElementById('order-total').innerHTML = totalHtml
-    finishOrder()
-
 }
 
+//Function takes user to pay modal
 function finishOrder(){
-   
-       
-    
+   document.getElementById('modal').style.display = 'inline'
+}
+
+//Function returns user to order page
+function goBack(){
+    document.getElementById('modal').style.display = 'none'
 }
