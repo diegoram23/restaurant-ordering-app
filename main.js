@@ -7,16 +7,18 @@ const payForm = document.getElementById('pay-form')
 //Listens for clicks on entire document
 document.addEventListener('click', function (e) {
     //Checks if add item btn is clicked
-    if (e.target.dataset.addBtn) {
-        addItemsToOrder(e.target.dataset.addBtn)
+    if (e.target.dataset.addItem) {
+        addItemsToOrder(e.target.dataset.addItem)
     }
     //Checks if remove item btn is clicked
-    else if (e.target.dataset.removeBtn) {
-        removeItemsFromOrder(e.target.dataset.removeBtn)
+    else if (e.target.dataset.removeItem) {
+        removeItemsFromOrder(e.target.dataset.removeItem)
+        console.log('sd')
     }
 
     else if (e.target.id === 'order-now') {
         finishOrder()
+        disableBtns()
     }
 
     else if (e.target.id === 'go-back') {
@@ -37,14 +39,15 @@ function getFeedHtml() {
             <p class="item-ingredients">${menu.ingredients}</p>
             <p class="item-price">$${menu.price}</p>
         </div>
-        <div class='add-btn-container'>
-            <button class='add-btn' data-add-btn='${menu.id}'>+</btn>
+        <div class='add-item-container'>
+            <button class='add-item' id='add-item' data-add-item='${menu.id}'>+</btn>
         </div>
     </div>
 `
     });
     return feedHtml
 }
+
 
 // Renders html to page
 function render() {
@@ -85,7 +88,7 @@ function getOrderHtml() {
         orderHtml += `
         <div class="order-line">
             <h3 class="order-selected">${item.name}</h3>
-            <p class="remove-btn" data-remove-btn="${item.id}">Remove</p>
+            <p class="remove-item" id='remove-item' data-remove-item="${item.id}">Remove</p>
             <h3 class="price">$${item.price}</h3>
         </div>
         `
@@ -93,6 +96,13 @@ function getOrderHtml() {
     document.getElementById('order').innerHTML = orderHtml
     renderPrice()
 }
+
+
+function disableBtns(){
+    document.getElementById('add-item').disabled = true;
+    
+}
+
 
 //Function renders total price of items selected by user
 function renderPrice() {

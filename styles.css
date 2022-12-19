@@ -84,7 +84,7 @@ main {
 
 /* Add button styles */
 
-.add-btn {
+.add-item {
     border-radius: 50%;
     height: 45px;
     width: 45px;
@@ -94,7 +94,7 @@ main {
     color: whitesmoke;
 }
 
-.add-btn:hover {
+.add-item:hover {
     cursor: pointer;
     background-color: #ddbc00;
     color: whitesmoke;
@@ -121,11 +121,13 @@ main {
     color: #019754;
 }
 
-.remove-btn {
+.remove-item {
     opacity: 0.7;
     font-size: 10px;
     color: #019754;
     cursor: pointer;
+    border: none;
+    background-color: transparent;
 }
 
 /* Total price styles */
