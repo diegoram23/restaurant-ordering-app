@@ -187,7 +187,7 @@ form {
     left: 0;
     bottom: 0;
     margin: auto;
-    width: 330px;
+    width: 310px;
     height: 280px;
     box-shadow: 5px 5px whitesmoke;
     background-color: whitesmoke;
@@ -249,6 +249,19 @@ input {
     border: 1px solid whitesmoke;
 }
 
+.modal-text{
+    font-size: 18px;
+}
+/* Name entered by user */
+.user-name {
+    color: #019754;
+    font-weight: bold;
+}
+/* car emoji on modal*/
+.car {
+    font-size: 22px;
+    font-size: 22px;
+}
 
 /* hides or unhides displays when called via javascript */
 .hidden {

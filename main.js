@@ -18,13 +18,13 @@ document.addEventListener('click', function (e) {
 
     else if (e.target.id === 'order-now') {
         finishOrder()
-        //Prevents user from adding more items while pay modal present
-        document.getElementById('add-item').disabled = true;
-
+        //Prevents user from adding or removing items while pay modal present
+        disableButtons()
     }
 
     else if (e.target.id === 'go-back') {
         goBack()
+        getOrderHtml()
     }
 })
 
@@ -80,7 +80,7 @@ function removeItemsFromOrder(items) {
 }
 
 
-// Generates html string based on user selection of items
+//Generates html string based on user selection of items
 function getOrderHtml() {
     let orderHtml = '<h2 class="order-title">Your Order</h2>'
     if (itemsOrderedArray.length === 0) {
@@ -124,6 +124,25 @@ function finishOrder() {
     document.getElementById('modal').style.display = 'inline'
 }
 
+//Prevents user from adding or removing items while pay modal is displayed
+function disableButtons(){
+    document.getElementById('add-item').disabled = true;
+    let orderHtml = '<h2 class="order-title">Your Order</h2>'
+    if (itemsOrderedArray.length === 0) {
+        document.getElementById('order').classList.add('hidden')
+    }
+    for (let item of itemsOrderedArray) {
+        orderHtml += `
+        <div class="order-line">
+            <h3 class="order-selected">${item.name}</h3>
+            <h3 class="price">$${item.price}</h3>
+        </div>
+        `
+    }
+    document.getElementById('order').innerHTML = orderHtml
+    renderPrice()
+}
+
 //Completes purchase and submits user information
 payForm.addEventListener('submit', function(e) {
     //prevents default submit behavior
@@ -138,7 +157,7 @@ payForm.addEventListener('submit', function(e) {
     `
         <div class = "payment-loading">
         <h2 class="modal-title">Almost Done!</h2>
-        <p class='moda-text'>Gathering your information</p>
+        <p class='modal-text'>Processing your order...</p>
         </div>
     `
     setTimeout(() => {
@@ -146,11 +165,16 @@ payForm.addEventListener('submit', function(e) {
         <div class = "payment-loading">
         <h2 class="modal-title">Finished!</h2>
 
-        <p class='modal-text'>Thank you for your purchase</p>
+        <p class='modal-text'><span class='user-name'>${fullName}</span>, your order is on the way!
+        <span class='car'> 🚘</span></p>
         </div>
         `
     }, 2500);
-    
+
+    setTimeout(() => {
+        window.location.reload()
+
+    }, 6000);
 })
 
 //Returns user to order page
