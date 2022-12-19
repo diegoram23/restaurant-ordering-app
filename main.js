@@ -3,6 +3,7 @@ import { menuArray } from './data.js'
 
 let itemsOrderedArray = []
 const payForm = document.getElementById('pay-form')
+const removeItem = document.getElementById('removeItem')
 
 //Listens for clicks on entire document
 document.addEventListener('click', function (e) {
@@ -13,12 +14,13 @@ document.addEventListener('click', function (e) {
     //Checks if remove item btn is clicked
     else if (e.target.dataset.removeItem) {
         removeItemsFromOrder(e.target.dataset.removeItem)
-        console.log('sd')
     }
 
     else if (e.target.id === 'order-now') {
         finishOrder()
-        disableBtns()
+        //Prevents user from adding more items while pay modal present
+        document.getElementById('add-item').disabled = true;
+
     }
 
     else if (e.target.id === 'go-back') {
@@ -26,7 +28,7 @@ document.addEventListener('click', function (e) {
     }
 })
 
-// Function that loops through each menu array data 
+// Loops through each menu array data 
 function getFeedHtml() {
     let feedHtml = ''
 
@@ -67,7 +69,7 @@ function addItemsToOrder(items) {
     getOrderHtml()
 }
 
-//Function that removes each item clicked by user
+//Removes each item clicked by user
 function removeItemsFromOrder(items) {
     const targetItemObj = menuArray.filter(chosenItem => {
         return chosenItem.id == items
@@ -78,7 +80,7 @@ function removeItemsFromOrder(items) {
 }
 
 
-// Generate html string based on user selection of items
+// Generates html string based on user selection of items
 function getOrderHtml() {
     let orderHtml = '<h2 class="order-title">Your Order</h2>'
     if (itemsOrderedArray.length === 0) {
@@ -88,7 +90,7 @@ function getOrderHtml() {
         orderHtml += `
         <div class="order-line">
             <h3 class="order-selected">${item.name}</h3>
-            <p class="remove-item" id='remove-item' data-remove-item="${item.id}">Remove</p>
+            <p class="remove-item" id="remove-item" data-remove-item="${item.id}">Remove</p>
             <h3 class="price">$${item.price}</h3>
         </div>
         `
@@ -97,14 +99,7 @@ function getOrderHtml() {
     renderPrice()
 }
 
-
-function disableBtns(){
-    document.getElementById('add-item').disabled = true;
-    
-}
-
-
-//Function renders total price of items selected by user
+//Renders total price of items selected by user
 function renderPrice() {
     let totalPrice = 0
     let totalHtml = ''
@@ -124,12 +119,12 @@ function renderPrice() {
     document.getElementById('order-total').innerHTML = totalHtml
 }
 
-//Function takes user to pay modal
+//Takes user to pay modal
 function finishOrder() {
     document.getElementById('modal').style.display = 'inline'
 }
 
-//Function that completes purchase and submits user information
+//Completes purchase and submits user information
 payForm.addEventListener('submit', function(e) {
     //prevents default submit behavior
     e.preventDefault()
@@ -158,7 +153,7 @@ payForm.addEventListener('submit', function(e) {
     
 })
 
-//Function returns user to order page
+//Returns user to order page
 function goBack() {
     document.getElementById('modal').style.display = 'none'
 }
