@@ -3,13 +3,12 @@ import { menuArray } from './data.js'
 
 let itemsOrderedArray = []
 const payForm = document.getElementById('pay-form')
-const removeItem = document.getElementById('removeItem')
 
 //Listens for clicks on entire document
 document.addEventListener('click', function (e) {
     //Checks if add item btn is clicked
     if (e.target.dataset.addItem) {
-        addItemsToOrder(e.target.dataset.addItem)
+        getItemsChosen(e.target.dataset.addItem)
     }
     //Checks if remove item btn is clicked
     else if (e.target.dataset.removeItem) {
@@ -23,12 +22,13 @@ document.addEventListener('click', function (e) {
     }
 
     else if (e.target.id === 'go-back') {
+        //returns user to order page
         goBack()
-        getOrderHtml()
+        renderChosenItems()
     }
 })
 
-// Loops through each menu array data 
+// Loops through each item menu array data 
 function getFeedHtml() {
     let feedHtml = ''
 
@@ -51,39 +51,39 @@ function getFeedHtml() {
 }
 
 
-// Renders html to page
-function render() {
+// Renders menu items html to page
+function renderFeedHtml() {
     document.getElementById('menu').innerHTML = getFeedHtml()
 }
-render()
+renderFeedHtml()
 
 
 
-//Matches items added and pushes them to an array
-function addItemsToOrder(items) {
+//Gets and pushes items that user chooses to an array
+function getItemsChosen(items) {
     const targetItemObj = menuArray.filter(chosenItem => {
         return chosenItem.id == items
     })[0]
     document.getElementById('order').classList.remove('hidden')
     itemsOrderedArray.push(targetItemObj)
-    getOrderHtml()
+    renderChosenItems()
 }
 
-//Removes each item clicked by user
+//Removes items chosen by user
 function removeItemsFromOrder(items) {
     const targetItemObj = menuArray.filter(chosenItem => {
         return chosenItem.id == items
     })
-    //If user removes all items from order, order display hides
     itemsOrderedArray.shift(targetItemObj)
-    getOrderHtml()
+    renderChosenItems()
 }
 
 
-//Generates html string based on user selection of items
-function getOrderHtml() {
+//Renders html based on user selection of items
+function renderChosenItems() {
     let orderHtml = '<h2 class="order-title">Your Order</h2>'
     if (itemsOrderedArray.length === 0) {
+            //If there are zero items on order, display hides
         document.getElementById('order').classList.add('hidden')
     }
     for (let item of itemsOrderedArray) {
@@ -124,10 +124,16 @@ function finishOrder() {
     document.getElementById('modal').style.display = 'inline'
 }
 
+//Returns user to order page
+function goBack() {
+    document.getElementById('modal').style.display = 'none'
+}
+
 //Prevents user from adding or removing items while pay modal is displayed
 function disableButtons(){
     document.getElementById('add-item').disabled = true;
     let orderHtml = '<h2 class="order-title">Your Order</h2>'
+    //If no items added, your order container is hidden
     if (itemsOrderedArray.length === 0) {
         document.getElementById('order').classList.add('hidden')
     }
@@ -160,6 +166,7 @@ payForm.addEventListener('submit', function(e) {
         <p class='modal-text'>Processing your order...</p>
         </div>
     `
+    //Thanks user for ordering
     setTimeout(() => {
         document.getElementById('modal').innerHTML = `
         <div class = "payment-loading">
@@ -170,14 +177,9 @@ payForm.addEventListener('submit', function(e) {
         </div>
         `
     }, 2500);
-
+    //Refreshes page after order completion
     setTimeout(() => {
         window.location.reload()
 
     }, 6000);
 })
-
-//Returns user to order page
-function goBack() {
-    document.getElementById('modal').style.display = 'none'
-}
