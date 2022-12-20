@@ -92,6 +92,8 @@ main {
     background-color: #019754;
     border: 1px solid  whitesmoke;
     color: whitesmoke;
+    padding: 0;
+    text-align: center;
 }
 
 .add-item:hover {
