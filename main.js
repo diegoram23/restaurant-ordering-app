@@ -42,7 +42,7 @@ function getFeedHtml() {
             <p class="item-price">$${menu.price}</p>
         </div>
         <div class='add-item-container'>
-            <button class='add-item' id='add-item' data-add-item='${menu.id}'>+</btn>
+            <button class='add-item' id='add-item' data-add-item='${menu.id}'>+</button>
         </div>
     </div>
 `
