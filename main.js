@@ -71,10 +71,7 @@ function getItemsChosen(items) {
 
 //Removes items chosen by user
 function removeItemsFromOrder(items) {
-    const targetItemObj = menuArray.filter(chosenItem => {
-        return chosenItem.id == items
-    })
-    itemsOrderedArray.shift(targetItemObj)
+    itemsOrderedArray.splice(items, 1)
     renderChosenItems()
 }
 
@@ -90,7 +87,7 @@ function renderChosenItems() {
         orderHtml += `
         <div class="order-line">
             <h3 class="order-selected">${item.name}</h3>
-            <p class="remove-item" id="remove-item" data-remove-item="${item.id}">Remove</p>
+            <p class="remove-item" id="remove-item" data-remove-item="${itemsOrderedArray.indexOf(item)}">Remove</p>
             <h3 class="price">$${item.price}</h3>
         </div>
         `
